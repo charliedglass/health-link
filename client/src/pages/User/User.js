@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Container, Row, Col, Modal, TextInput, Button, Icon} from 'react-materialize';
+import { Container, Row, Col, Modal, TextInput, Button, Icon } from 'react-materialize';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,7 +7,7 @@ import './User.css';
 
 // import API from "../../utils/API";
 
-const backgroundImg ='./assets/images/background1.jpg'
+const backgroundImg = './assets/images/background1.jpg'
 
 // import { Col, Row, Container } from "../../components/Grid";
 // import Jumbotron from "../../components/Jumbotron";
@@ -17,169 +17,200 @@ const backgroundImg ='./assets/images/background1.jpg'
 const health = require('healthstats');
 
 class User extends Component {
-  state = {
-    user: [],
-    name: "",
-    age: "",
-    weight: "",
-    feet: "",
-    inches: "",
-    activity: "",
-    exercise: "",
-    sleep: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: [],
+      name: "",
+      age: "",
+      weight: "",
+      feet: "",
+      inches: "",
+      water:"",
+      // activity: "",
+      exercise: "",
+      sleep: "",
+      calories:"",
+    };
 
-  // handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  // state = {
+  //   user: [],
+  //   name: "",
+  //   age: "",
+  //   weight: "",
+  //   feet: "",
+  //   inches: "",
+  //   activity: "",
+  //   exercise: "",
+  //   sleep: "",
   // };
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.state.name && this.state.age && this.state.weight && this.state.isMale && this.state.feet && this.state.inches && this.state.activityLevel) {
-  //     // Define variables for calculations
-  //     let height = this.convertHeight();
-  //     let weight = this.state.weight;
-  //     let age = this.state.age;
-      
-  //     API.saveUser({
-  //       name: this.state.name,
-  //       age: age,
-  //       weight: weight,
-  //       height: height,
-  //       BMI: this.calculateBMI(height).toFixed(1),
-  //       water_goal: this.calculateWaterGoal(),
-  //       exercise_goal: this.state.exercise,
-  //       intake_goal: this.calculateCalorieRec(weight, height, age),
-  //       sleep_goal: this.state.sleep
-  //     }) 
-  //       .then(res => console.log("user saved"))
-  //       .catch(err => console.log(err));
-  //   } else {
-  //     alert("Please make sure you answer all the questions!")
-  //   }
-  // };
+  // this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
-  // // Converts feet to inches
-  // convertHeight = () => {
-  //   return ((parseInt(this.state.feet) * 12) + parseInt(this.state.inches));
-  // };
+handleInputChange = event => {
+  // console.log(this.state)
+  const { name, value } = event.target;
+  this.setState({
+    [name]: value
+  });
+};
 
-  // // Calculates BMI using weight in pounds and height in inches
-  // calculateBMI = (h) => {
-  //   return ((parseInt(this.state.weight) / h / h) * 703);
-  // };
 
-  // // Calculates water intake recommendation in ounces based on weight in pounds
-  // calculateWaterGoal = () => {
-  //   return ((parseInt(this.state.weight) / 2));
-  // };
+handleFormSubmit = event => {
+  console.log("hi")
+  event.preventDefault();
+  console.log(this.state)
+}
+//   event.preventDefault();
+//   if (this.state.name && this.state.age && this.state.weight && this.state.isMale && this.state.feet && this.state.inches && this.state.activityLevel) {
+//     // Define variables for calculations
+//     let height = this.convertHeight();
+//     let weight = this.state.weight;
+//     let age = this.state.age;
 
-  // // Calculates recommended caloric intake
-  // calculateCalorieRec = (weight, height, age) => {
-  //   let male_BMR = health.male.BMR(weight, height, age);
-  //   let female_BMR = health.female_BMR(weight, height, age);
+//     API.saveUser({
+//       name: this.state.name,
+//       age: age,
+//       weight: weight,
+//       height: height,
+//       BMI: this.calculateBMI(height).toFixed(1),
+//       water_goal: this.calculateWaterGoal(),
+//       exercise_goal: this.state.exercise,
+//       intake_goal: this.calculateCalorieRec(weight, height, age),
+//       sleep_goal: this.state.sleep
+//     }) 
+//       .then(res => console.log("user saved"))
+//       .catch(err => console.log(err));
+//   } else {
+//     alert("Please make sure you answer all the questions!")
+//   }
+// };
 
-  //   //Sedentary 
-  //   if (isMale && this.state.activity === "sedentary") {
-  //     health.male.noActivity(male_BMR);
-  //   } 
-  //   else if (!isMale && this.state.activity === "sedentary") {
-  //     health.female.noActivity(female_BMR);
-  //   } 
-  //   //Light Activity 
-  //   else if (isMale && this.state.activity === "light") {
-  //     health.male.lightActivity(male_BMR);
-  //   } 
-  //   else if (!isMale && this.state.activity === "light") {
-  //     health.female.lightActivity(female_BMR);
-  //   }  
-  //   //Moderate Activity 
-  //   else if (isMale && this.state.activity === "moderate") {
-  //     health.male.moderateActivity(male_BMR);
-  //   } 
-  //   else if (!isMale && this.state.activity === "moderate") {
-  //     health.female.moderateActivity(female_BMR);
-  //   }
-  //   //Very Active
-  //   else if (isMale && this.state.activity === "veryActive") {
-  //     health.male.veryActive(male_BMR);
-  //   } 
-  //   else if (!isMale && this.state.activity === "veryActive") {
-  //     health.female.veryActive(female_BMR);
-  //   }
-  //   //Extremely Active
-  //   else if (isMale && this.state.activity === extremelyActive) {
-  //     health.male.extremelyActive(male_BMR);
-  //   } 
-  //   else if (!isMale && this.state.activity === extremelyActive) {
-  //     health.female.extremelyActive(female_BMR);
-  //   }
-  // }
-  render() {
-    return (
-      <div className="mainWrapper" style={{ backgroundImage: `url(${backgroundImg})` }}>
-        <Container className="containerDay">
-        <TextInput label="First Name" 
-        value={this.state.name}
-        onChange={this.handleInputChange}
-        name="name"
+// // Converts feet to inches
+// convertHeight = () => {
+//   return ((parseInt(this.state.feet) * 12) + parseInt(this.state.inches));
+// };
+
+// // Calculates BMI using weight in pounds and height in inches
+// calculateBMI = (h) => {
+//   return ((parseInt(this.state.weight) / h / h) * 703);
+// };
+
+// // Calculates water intake recommendation in ounces based on weight in pounds
+// calculateWaterGoal = () => {
+//   return ((parseInt(this.state.weight) / 2));
+// };
+
+// // Calculates recommended caloric intake
+// calculateCalorieRec = (weight, height, age) => {
+//   let male_BMR = health.male.BMR(weight, height, age);
+//   let female_BMR = health.female_BMR(weight, height, age);
+
+//   //Sedentary 
+//   if (isMale && this.state.activity === "sedentary") {
+//     health.male.noActivity(male_BMR);
+//   } 
+//   else if (!isMale && this.state.activity === "sedentary") {
+//     health.female.noActivity(female_BMR);
+//   } 
+//   //Light Activity 
+//   else if (isMale && this.state.activity === "light") {
+//     health.male.lightActivity(male_BMR);
+//   } 
+//   else if (!isMale && this.state.activity === "light") {
+//     health.female.lightActivity(female_BMR);
+//   }  
+//   //Moderate Activity 
+//   else if (isMale && this.state.activity === "moderate") {
+//     health.male.moderateActivity(male_BMR);
+//   } 
+//   else if (!isMale && this.state.activity === "moderate") {
+//     health.female.moderateActivity(female_BMR);
+//   }
+//   //Very Active
+//   else if (isMale && this.state.activity === "veryActive") {
+//     health.male.veryActive(male_BMR);
+//   } 
+//   else if (!isMale && this.state.activity === "veryActive") {
+//     health.female.veryActive(female_BMR);
+//   }
+//   //Extremely Active
+//   else if (isMale && this.state.activity === extremelyActive) {
+//     health.male.extremelyActive(male_BMR);
+//   } 
+//   else if (!isMale && this.state.activity === extremelyActive) {
+//     health.female.extremelyActive(female_BMR);
+//   }
+// }
+render() {
+  return (
+    <form onSubmit={this.handleFormSubmit}>
+    <div className="mainWrapper" style={{ backgroundImage: `url(${backgroundImg})` }}>
+      <Container className="containerDay">
+        <TextInput label="First Name"
+          value={this.state.name}
+          onChange={this.handleInputChange}
+          name="name"
         />
-        <TextInput label="Age" 
-        value={this.state.age}
-        onChange={this.handleInputChange}
-        name="age"
+        <TextInput label="Age"
+          value={this.state.age}
+          onChange={this.handleInputChange}
+          name="age"
         />
-        <TextInput label="Weight in lbs" 
-        value={this.state.weight}
-        onChange={this.handleInputChange}
-        name="weight"
+        <TextInput label="Weight in lbs"
+          value={this.state.weight}
+          onChange={this.handleInputChange}
+          name="weight"
         />
         <Row>
-        <TextInput label="Height Feet" 
-        value={this.state.feet}
-        onChange={this.handleInputChange}
-        name="feet"
-        />
-        <TextInput label="Inches" 
-        value={this.state.inches}
-        onChange={this.handleInputChange}
-        name="inches"
-        />
+          <TextInput label="Height Feet"
+            value={this.state.feet}
+            onChange={this.handleInputChange}
+            name="feet"
+          />
+          <TextInput label="Inches"
+            value={this.state.inches}
+            onChange={this.handleInputChange}
+            name="inches"
+          />
         </Row>
-        <TextInput label="Target Water Consumption" 
-        value={this.state.water}
-        onChange={this.handleInputChange}
-        name="water"
+        <TextInput label="Target Water Consumption"
+          value={this.state.water}
+          onChange={this.handleInputChange}
+          name="water"
         />
-        <TextInput label="Target Weekly Exercise" 
-        value={this.state.exercise}
-        onChange={this.handleInputChange}
-        name="exercise"
+        <TextInput label="Target Weekly Exercise"
+          value={this.state.exercise}
+          onChange={this.handleInputChange}
+          name="exercise"
         />
-        <TextInput label="Target hours of sleep" 
-        value={this.state.sleep}
-        onChange={this.handleInputChange}
-        name="sleep"
+        <TextInput label="Target hours of sleep"
+          value={this.state.sleep}
+          onChange={this.handleInputChange}
+          name="sleep"
         />
-        <TextInput label="Target Calories" 
-        value={this.state.calories}
-        onChange={this.handleInputChange}
-        name="calories"
+        <TextInput label="Target Calories"
+          value={this.state.calories}
+          onChange={this.handleInputChange}
+          name="calories"
         />
-        <Button className="submit" type="submit" waves="light">
-            Create Profile!
+        <Button onChange={this.handleFormSubmit} className="submit" type="submit" waves="light">
+          Create Profile!
           <Icon right>
-           send
+            send
           </Icon>
         </Button>
-        </Container>
-      </div>
-  
-    );
-  }
+      </Container>
+    </div>
+    </form>
+
+
+  );
+}
 
   // render() {
   //   return (

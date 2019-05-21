@@ -7,8 +7,6 @@ import moment from "moment";
 
 import './User.css';
 
-const health = require("healthstats");
-
 // Images
 const backgroundImg ='./assets/images/background1.jpg';
 
@@ -54,16 +52,21 @@ class User extends Component {
     });
   };
 
-  handleSelectChange(event) {
-    this.setState({value: event.target.value});
-  }
+  handleActivityChange = event => {
+    this.setState({activity: event.target.value});
+  };
+
+  handleGenderChange = event => {
+    this.setState({gender: event.target.value});
+  };
 
   handleFormSubmit = event => {
     event.preventDefault();
     const BMI = Math.round(helper.calculateBMI(this.state.height, this.state.weight)*10)/10;
     const water_goal = Math.round(helper.calculateWaterGoal(this.state.weight));
     const intake_goal =  Math.round(helper.calculateCalorieRec(this.state.weight, this.state.height, this.state.age, this.state.gender, this.state.activity));
-
+    // const exercise_goal = Math.round(helper.calculateExerciseGoal(this.state.activity));
+    
     API.updateUser(this.props.user.id, {
       email: this.state.email, 
       name: this.state.name, 
@@ -74,7 +77,8 @@ class User extends Component {
       activity: this.state.activity, 
       BMI: BMI, 
       water_goal: water_goal, 
-      intake_goal: intake_goal
+      intake_goal: intake_goal,
+      exercise_goal: parseInt(this.state.activity)
     })
     .then(res => {
       this.props.history.replace('/day');
@@ -134,18 +138,18 @@ class User extends Component {
             </Row>
             <Row>
               <Col className="s12 center-align">
-                <Select value={this.state.activity} onChange={this.handleSelectChange} label="Activity Level">
-                  <option value="sedentary">Sedentary</option>
-                  <option value="light">Light</option>
-                  <option value="moderate">Moderate</option>
-                  <option value="veryActive">Very Active</option>
-                  <option value="extremelyActive">Extremely Active</option>
+                <Select value={this.state.activity} onChange={this.handleActivityChange} label="Activity Level">
+                  <option value="0">Sedentary</option>
+                  <option value="1">Light</option>
+                  <option value="2">Moderate</option>
+                  <option value="3">Very Active</option>
+                  <option value="4">Extremely Active</option>
                 </Select>
                 </Col>
             </Row>
             <Row>
               <Col className="s12 center-align">
-                <Select value={this.state.gender} onChange={this.handleSelectChange} label="Activity Level">
+                <Select value={this.state.gender} onChange={this.handleGenderChange} label="Gender">
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </Select>

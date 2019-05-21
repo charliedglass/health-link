@@ -48,8 +48,8 @@ class Nav extends Component {
       const height = parseInt(this.state.height);
       const weight = parseInt(this.state.weight);
       const age = parseInt(this.state.age);
-      const gender = this.state.gender;
-      const activity = this.state.activity;
+      // const gender = this.state.gender;
+      // const activity = this.state.activity;
       // this.setState({
       //   BMI: Math.round(helper.calculateBMI(height, weight)*10)/10,
       //   water_goal: Math.round(helper.calculateWaterGoal(weight)),
@@ -57,6 +57,14 @@ class Nav extends Component {
       // });
       console.log(event.target);
       console.log(this.state);
+    };
+
+    handleActivityChange = event => {
+      this.setState({activity: event.target.value});
+    };
+  
+    handleGenderChange = event => {
+      this.setState({gender: event.target.value});
     };
 
     
@@ -143,15 +151,15 @@ class Nav extends Component {
                 <TextInput label="Weight (lbs)" name = "weight" onChange = {this.handleChange}/>
                 <TextInput email validate label="Email" name = "email" onChange = {this.handleChange}/>
                 <TextInput password label="Password" name = "password" onChange = {this.handleChange}/>
-                <Select value={this.state.activity} onChange={this.handleChange} label="Activity Level" name="activity">
+                <Select value={this.state.activity} onChange={this.handleActivityChange} label="Activity Level" name="activity">
                   <option value="" disabled>Choose an option</option>
-                  <option value="Sedentary">Sedentary</option>
-                  <option value="Light">Light</option>
-                  <option value="Moderate">Moderate</option>
-                  <option value="Very Active">Very Active</option>
-                  <option value="Extremely Active">Extremely Active</option>
+                  <option value="0">Sedentary</option>
+                  <option value="1">Light</option>
+                  <option value="2">Moderate</option>
+                  <option value="3">Very Active</option>
+                  <option value="4">Extremely Active</option>
                 </Select>
-                <Select value={this.state.gender} onChange={this.handleChange} label="Gender" name="gender">
+                <Select value={this.state.gender} onChange={this.handleGenderChange} label="Gender" name="gender">
                 <option value="" disabled>Choose an option</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>

@@ -207,7 +207,7 @@ class Day extends Component {
             progressArrCopy[i].fat = metric[2] + old_fat;
             progressArrCopy[i].carbs = metric[3] + old_carbs;
           }
-          metricOfInterest = [progressArrCopy[i].calories, progressArrCopy[i].carbs, progressArrCopy[i].protein, progressArrCopy[i].fat];
+          metricOfInterest = [progressArrCopy[i].calories, progressArrCopy[i].protein, progressArrCopy[i].fat, progressArrCopy[i].carbs];
         }
         break;
       }

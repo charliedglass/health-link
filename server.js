@@ -25,6 +25,11 @@ app.use((req, res, next) => {
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/sampleusers";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 
 app.post('/api/users', (req, res) => {
   db.User
@@ -58,19 +63,16 @@ app.put('/api/users/:id', (req, res) => {
       .catch(err => res.status(422).json(err));
 });
 
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
 
 app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, '../client/build/index.html'));
+	response.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
 
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  console.log(__dirname);
 });
 
 module.exports = app;

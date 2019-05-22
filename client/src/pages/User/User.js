@@ -23,7 +23,17 @@ class User extends Component {
     activity: "",
     exercise: "",
     sleep: "",
+    gender: "",
+    activity: "",
     gender: ""
+  };
+
+  activityToExercise = {
+    "Sedentary": 0,
+    "Light": 1,
+    "Moderate": 2,
+    "Very Active": 3,
+    "Extremely Active": 4
   };
 
   componentDidMount() {
@@ -76,6 +86,7 @@ class User extends Component {
       height: this.state.height, 
       gender: this.state.gender, 
       activity: this.state.activity, 
+      exercise_goal: this.activityToExercise[this.state.activity],
       BMI: BMI, 
       water_goal: water_goal, 
       intake_goal: intake_goal,
@@ -143,18 +154,18 @@ class User extends Component {
             </Row>
             <Row>
               <Col className="s12 center-align">
-                <Select value={this.state.activity} onChange={this.handleActivityChange} label="Activity Level">
-                  <option value="0">Sedentary</option>
-                  <option value="1">Light</option>
-                  <option value="2">Moderate</option>
-                  <option value="3">Very Active</option>
-                  <option value="4">Extremely Active</option>
+                <Select m={12} value={this.state.activity} onChange={this.handleSelectChange} label="Activity Level" name = "activity">
+                  <option value="sSedentary">Sedentary</option>
+                  <option value="Light">Light</option>
+                  <option value="Moderate">Moderate</option>
+                  <option value="Very Active">Very Active</option>
+                  <option value="Extremely Active">Extremely Active</option>
                 </Select>
                 </Col>
             </Row>
             <Row>
               <Col className="s12 center-align">
-                <Select value={this.state.gender} onChange={this.handleGenderChange} label="Gender">
+                <Select m={12} value={this.state.gender} onChange={this.handleSelectChange} label="Gender" name="gender">
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </Select>

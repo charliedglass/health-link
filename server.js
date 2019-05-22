@@ -3,6 +3,7 @@ const db = require('./models');
 const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const path = require("path");
 
 const isAuthenticated = require("./config/isAuthenticated");
 const auth = require("./config/auth");
@@ -65,7 +66,7 @@ app.put('/api/users/:id', (req, res) => {
 
 
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 

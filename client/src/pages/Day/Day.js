@@ -378,7 +378,7 @@ class Day extends Component {
             <Col className="s1 black-text center-align">
               <div className="btn green waves-effect prev leftArrow" onClick={this.dateDecrement}>{'<'}</div>
             </Col>
-            <Col className="s4 offset-s2 black-text center-align">
+            <Col className="s4 offset-s1 black-text center-align">
               <DatePicker
                 selected={this.state.startDate}
                 onChange={this.handleDateChange}

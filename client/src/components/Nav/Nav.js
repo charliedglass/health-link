@@ -162,11 +162,11 @@ class Nav extends Component {
                 <TextInput password label="Password" name = "password" onChange = {this.handleChange}/>
                 <Select value={this.state.activity} onChange={this.handleActivityChange} label="Activity Level" name="activity">
                   <option value="" disabled>Choose an option</option>
-                  <option value="0">Sedentary</option>
-                  <option value="1">Light</option>
-                  <option value="2">Moderate</option>
-                  <option value="3">Very Active</option>
-                  <option value="4">Extremely Active</option>
+                  <option value="Sedentary">Sedentary</option>
+                  <option value="Light">Light</option>
+                  <option value="Moderate">Moderate</option>
+                  <option value="Very Active">Very Active</option>
+                  <option value="Extremely Active">Extremely Active</option>
                 </Select>
                 <Select value={this.state.gender} onChange={this.handleGenderChange} label="Gender" name="gender">
                 <option value="" disabled>Choose an option</option>

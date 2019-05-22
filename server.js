@@ -64,7 +64,7 @@ app.put('/api/users/:id', (req, res) => {
 });
 
 app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+	response.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
 

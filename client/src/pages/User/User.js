@@ -45,6 +45,7 @@ class User extends Component {
     });
   };
 
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -98,7 +99,8 @@ class User extends Component {
           <form className="userForm">
           <Row className="userFormSection">
             <Col className="s12 center-align">
-                <TextInput
+                <TextInput 
+                  m={12} 
                   value={this.state.name}
                   onChange={this.handleInputChange}
                   name="name"
@@ -109,6 +111,7 @@ class User extends Component {
             <Row>
               <Col className="s12 center-align">
                 <TextInput
+                  m={12} 
                   value={this.state.age}
                   onChange={this.handleInputChange}
                   name="age"
@@ -119,6 +122,7 @@ class User extends Component {
             <Row>
               <Col className="s12 center-align">
                 <TextInput
+                  m={12} 
                   value={this.state.weight}
                   onChange={this.handleInputChange}
                   name="weight"
@@ -129,6 +133,7 @@ class User extends Component {
             <Row>
               <Col className="s12 center-align">
                 <TextInput
+                  m={12} 
                   value={this.state.height}
                   onChange={this.handleInputChange}
                   name="height"

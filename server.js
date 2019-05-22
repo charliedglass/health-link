@@ -23,10 +23,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
 // Add routes, both API and view	
 // app.use(routes);
 
@@ -65,6 +61,10 @@ app.put('/api/users/:id', (req, res) => {
       .findOneAndUpdate({ _id: req.params.id }, {$set: req.body})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+});
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 

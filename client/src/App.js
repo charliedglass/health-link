@@ -15,7 +15,8 @@ if(localStorage.getItem("id_token")) {
 }
 
 
-const App = () => (
+function App() {
+  return (
   <Router>
     <div>
       <Nav />
@@ -28,6 +29,7 @@ const App = () => (
       <Footer />
     </div>
   </Router>
-);
+  );
+  };
 
 export default App;
